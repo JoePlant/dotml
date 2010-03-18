@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen RNGSchema="file:/C:/works/dotml/schema/dotml.rng" type="xml"?>
+<digraph name="Engine UML" rankdir="BT" fontname="Courier New" fontsize="10" xmlns="http://dotml.googlecode.com">
+	<!-- Classes -->
+	<nodeGlobalAttr shape="Mrecord" fontname="Courier New" fontsize="10"/>
+	<node id="Object">
+		<row label="Object"/>
+		<row>
+			<nl align="left">+ handle</nl>
+			<nl align="left">+ name</nl>
+		</row>
+	</node>
+	<subgraph id="cluster-spatials" bgcolor="azure" label="Spatials">
+		<node id="Spatial"/>
+		<subgraph id="cluster-leaf-spatials" label="Leaf Spatials" bgcolor="azure" bgcolorgrade="3">
+			<node id="Light"/>			
+			<node id="Camera"/>
+			<node id="Geometry"/>
+		</subgraph>
+		<node id="Node"/>		
+	</subgraph>
+	<subgraph id="cluster-bounds" bgcolor="aliceblue" label="Bounds">
+		<node id="Bound"/>
+		<node id="AABB"/>
+		<node id="SphereBound"/>		
+	</subgraph>
+	<subgraph id="cluster-states" bgcolor="blanchedalmond" label="States">
+		<node id="GlobalState"/>
+		<node id="AlphaState"/>
+		<node id="LightState"/>		
+	</subgraph>
+	<node id="VisibleSet"/>
+	<node id="VisibleObject"/>
+	<node id="Culler"/>
+	<node id="GeometryData"/>
+	
+	<!-- Class Hierarchies -->
+	<edge from="Bound" to="Object"/>
+	<edge from="GlobalState" to="Object"/>
+	<edge from="Spatial" to="Object"/>
+	<edge from="Node" to="Spatial"/>
+	<edge from="Light" to="Spatial"/>
+	<edge from="Camera" to="Spatial"/>
+	<edge from="Geometry" to="Spatial"/>
+	<edge from="GeometryData" to="Object"/>
+	<edge from="AABB" to="Bound"/>
+	<edge from="SphereBound" to="Bound"/>
+	<edge from="AlphaState" to="GlobalState"/>
+	<edge from="LightState" to="GlobalState"/>
+	<edge from="Culler" to="VisibleSet"/>
+	
+	<!--  Object References -->
+	<edgeGlobalAttr style="dotted" arrowhead="empty" labelfontname="Courier New" labelfontsize="10"/>
+	<edge from="Spatial" to="Bound"/>
+	<edge from="VisibleSet" to="VisibleObject" headlabel="*" taillabel="1" labeldistance="1.5"/>
+	<edge from="VisibleObject" to="Spatial"/>
+	<edge from="VisibleObject" to="GlobalState"/>
+	<edge from="Node" to="Node" taillabel="child" headlabel="*"/>
+	<edge from="Geometry" to="GeometryData" headlabel="1"/>
+</digraph>

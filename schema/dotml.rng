@@ -1,0 +1,976 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+	datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes" ns="http://dotml.googlecode.com">
+	<start>
+		<ref name="graphKind"/>
+	</start>
+	<define name="alignType">
+		<choice>
+			<value>left</value>
+			<value>right</value>
+			<value>center</value>
+		</choice>
+	</define>
+	<define name="cidType">
+		<data type="string">
+			<param name="pattern">\w{1}[\d\w_\-]*</param>
+		</data>
+	</define>
+	<define name="portType">
+		<choice>
+			<value>n</value>
+			<value>ne</value>
+			<value>e</value>
+			<value>se</value>
+			<value>s</value>
+			<value>sw</value>
+			<value>w</value>
+			<value>nw</value>
+		</choice>
+	</define>
+	<define name="arrowType">
+		<choice>
+			<value>normal</value>
+			<value>inv</value>
+			<value>dot</value>
+			<value>invdot</value>
+			<value>odot</value>
+			<value>invodot</value>
+			<value>empty</value>
+			<value>none</value>
+		</choice>
+	</define>
+	<define name="rgbColorType">
+		<list>
+			<data type="float"/>
+			<data type="float"/>
+			<data type="float"/>
+		</list>
+	</define>
+	<define name="pageDirType">
+		<choice>
+			<value>BT</value>
+			<value>TB</value>
+			<value>LR</value>
+			<value>RL</value>
+		</choice>
+	</define>
+	<define name="shapeType">
+		<choice>
+			<value>box</value>
+			<value>polygon</value>
+			<value>ellipse</value>
+			<value>circle</value>
+			<value>point</value>
+			<value>egg</value>
+			<value>triangle</value>
+			<value>plaintext</value>
+			<value>diamond</value>
+			<value>trapezium</value>
+			<value>parallelogram</value>
+			<value>house</value>
+			<value>hexagon</value>
+			<value>octagon</value>
+			<value>doublecircle</value>
+			<value>doubleoctagon</value>
+			<value>tripleoctagon</value>
+			<value>invtriangle</value>
+			<value>invtrapezium</value>
+			<value>invhouse</value>
+			<value>Mdiamond</value>
+			<value>Msquare</value>
+			<value>Mcircle</value>
+			<value>record</value>
+			<value>Mrecord</value>
+		</choice>
+	</define>
+	<define name="namedColorType">
+		<choice>
+			<value>antiquewhite</value>
+			<value>coral</value>
+			<value>darkgoldenrod</value>
+			<value>azure</value>
+			<value>crimson</value>
+			<value>gold</value>
+			<value>bisque</value>
+			<value>darksalmon</value>
+			<value>goldenrod</value>
+			<value>aliceblue</value>
+			<value>blanchedalmond</value>
+			<value>deeppink</value>
+			<value>greenyellow</value>
+			<value>blue</value>
+			<value>cornsilk</value>
+			<value>firebrick</value>
+			<value>lightgoldenrod</value>
+			<value>blueviolet</value>
+			<value>floralwhite</value>
+			<value>hotpink</value>
+			<value>lightgoldenrodyellow</value>
+			<value>cadetblue</value>
+			<value>gainsboro</value>
+			<value>indianred</value>
+			<value>lightyellow</value>
+			<value>cornflowerblue</value>
+			<value>ghostwhite</value>
+			<value>lightpink</value>
+			<value>palegoldenrod</value>
+			<value>darkslateblue</value>
+			<value>honeydew</value>
+			<value>lightsalmon</value>
+			<value>yellow</value>
+			<value>deepskyblue</value>
+			<value>ivory</value>
+			<value>maroon</value>
+			<value>yellowgreen</value>
+			<value>dodgerblue</value>
+			<value>lavender</value>
+			<value>mediumvioletred</value>
+			<value>indigo</value>
+			<value>lavenderblush</value>
+			<value>orangered</value>
+			<value>lightblue</value>
+			<value>lemonchiffon</value>
+			<value>palevioletred</value>
+			<value>chartreuse</value>
+			<value>lightskyblue</value>
+			<value>linen</value>
+			<value>pink</value>
+			<value>darkgreen</value>
+			<value>lightslateblue</value>
+			<value>mintcream</value>
+			<value>red</value>
+			<value>darkolivegreen</value>
+			<value>mediumblue</value>
+			<value>mistyrose</value>
+			<value>salmon</value>
+			<value>darkseagreen</value>
+			<value>mediumslateblue</value>
+			<value>moccasin</value>
+			<value>tomato</value>
+			<value>forestgreen</value>
+			<value>midnightblue</value>
+			<value>navajowhite</value>
+			<value>violetred</value>
+			<value>green</value>
+			<value>navy</value>
+			<value>oldlace</value>
+			<value>greenyellow</value>
+			<value>navyblue</value>
+			<value>papayawhip</value>
+			<value>lawngreen</value>
+			<value>powderblue</value>
+			<value>peachpuff</value>
+			<value>beige</value>
+			<value>lightseagreen</value>
+			<value>royalblue</value>
+			<value>seashell</value>
+			<value>brown</value>
+			<value>limegreen</value>
+			<value>skyblue</value>
+			<value>snow</value>
+			<value>burlywood</value>
+			<value>mediumseagreen</value>
+			<value>slateblue</value>
+			<value>thistle</value>
+			<value>chocolate</value>
+			<value>mediumspringgreen</value>
+			<value>steelblue</value>
+			<value>wheat</value>
+			<value>darkkhaki</value>
+			<value>mintcream</value>
+			<value>white</value>
+			<value>khaki</value>
+			<value>olivedrab</value>
+			<value>whitesmoke</value>
+			<value>peru</value>
+			<value>palegreen</value>
+			<value>blueviolet</value>
+			<value>rosybrown</value>
+			<value>seagreen</value>
+			<value>darkorchid</value>
+			<value>saddlebrown</value>
+			<value>springgreen</value>
+			<value>darkviolet</value>
+			<value>darkslategray</value>
+			<value>sandybrown</value>
+			<value>yellowgreen</value>
+			<value>magenta</value>
+			<value>dimgray</value>
+			<value>sienna</value>
+			<value>mediumorchid</value>
+			<value>gray</value>
+			<value>tan</value>
+			<value>mediumpurple</value>
+			<value>gray</value>
+			<value>aquamarine</value>
+			<value>mediumvioletred</value>
+			<value>lightgray</value>
+			<value>cyan</value>
+			<value>orchid</value>
+			<value>lightslategray</value>
+			<value>darkorange</value>
+			<value>darkturquoise</value>
+			<value>palevioletred</value>
+			<value>slategray</value>
+			<value>orange</value>
+			<value>lightcyan</value>
+			<value>plum</value>
+			<value>orangered</value>
+			<value>mediumaquamarine</value>
+			<value>purple</value>
+			<value>mediumturquoise</value>
+			<value>violet</value>
+			<value>black</value>
+			<value>paleturquoise</value>
+			<value>violetred</value>
+		</choice>
+	</define>
+	<define name="colorType">
+		<choice>
+			<ref name="rgbColorType"/>
+			<ref name="namedColorType"/>
+		</choice>
+	</define>
+	<define name="sizeType">
+		<list>
+			<data type="float"/>
+			<data type="float"/>
+		</list>
+	</define>
+	<define name="graphKind">
+		<choice>
+			<ref name="graph"/>
+			<ref name="digraph"/>
+		</choice>
+	</define>
+	<define name="graph">
+		<element name="graph">
+			<attribute name="name">
+				<text/>
+			</attribute>
+			<ref name="graphBody"/>
+		</element>
+	</define>
+	<define name="digraph">
+		<element name="digraph">
+			<attribute name="name">
+				<text/>
+			</attribute>
+			<ref name="graphBody"/>
+		</element>
+	</define>
+	<define name="graphBody">
+		<ref name="graphBodyAttr"/>
+		<zeroOrMore>
+			<choice>
+				<ref name="subgraph"/>
+				<ref name="nodeKind"/>
+				<ref name="edgeKind"/>
+			</choice>
+		</zeroOrMore>
+	</define>
+	<define name="subgraph">
+		<element name="subgraph">
+			<attribute name="id">
+				<data type="ID"/>
+			</attribute>
+			<ref name="graphBody"/>
+		</element>
+	</define>
+	<define name="edgeKind">
+		<choice>
+			<ref name="edge"/>
+			<ref name="edgeGlobalAttr"/>
+		</choice>
+	</define>
+	<define name="nodeKind">
+		<choice>
+			<ref name="node"/>
+			<ref name="nodeGlobalAttr"/>
+		</choice>
+	</define>
+	<define name="node">
+		<element name="node">
+			<attribute name="id">
+				<data type="ID"/>
+			</attribute>
+			<optional>
+				<ref name="nodeLabel"/>
+			</optional>
+			<ref name="nodeAttr"/>
+			<zeroOrMore>
+				<ref name="newline"/>
+			</zeroOrMore>
+			<choice>
+				<zeroOrMore>
+					<ref name="col"/>
+				</zeroOrMore>
+				<zeroOrMore>
+					<ref name="row"/>
+				</zeroOrMore>
+			</choice>
+		</element>
+	</define>
+	<define name="rowcolAttr">
+		<optional>
+			<attribute name="cid">
+				<ref name="cidType"/>
+			</attribute>
+		</optional>
+		<ref name="optAlign"/>
+	</define>
+	<define name="col">
+		<element name="col">
+			<ref name="rowcolAttr"/>
+			<optional>
+				<ref name="label"/>
+			</optional>
+			<zeroOrMore>
+				<ref name="newline"/>
+			</zeroOrMore>
+			<zeroOrMore>
+				<ref name="row"/>
+			</zeroOrMore>
+		</element>
+	</define>
+	<define name="newline">
+		<element name="nl">
+			<optional>
+				<attribute name="align">
+					<ref name="alignType"/>
+				</attribute>
+			</optional>
+			<text/>
+		</element>
+	</define>
+	<define name="label">
+		<attribute name="label">
+			<text/>
+		</attribute>
+	</define>
+	<define name="row">
+		<element name="row">
+			<ref name="rowcolAttr"/>
+			<optional>
+				<ref name="label"/>
+			</optional>
+			<zeroOrMore>
+				<ref name="newline"/>
+			</zeroOrMore>
+			<zeroOrMore>
+				<ref name="col"/>
+			</zeroOrMore>
+		</element>
+	</define>
+	<define name="edge">
+		<element name="edge">
+			<attribute name="from">
+				<data type="IDREF"/>
+			</attribute>
+			<optional>
+				<attribute name="fromCid">
+					<ref name="cidType"/>
+				</attribute>
+			</optional>
+			<attribute name="to">
+				<data type="IDREF"/>
+			</attribute>
+			<optional>
+				<attribute name="toCid">
+					<ref name="cidType"/>
+				</attribute>
+			</optional>
+			<optional>
+				<ref name="edgeLabel"/>
+			</optional>
+			<ref name="edgeAttr"/>
+		</element>
+	</define>
+	<define name="nodeLabel">
+		<attribute name="label">
+			<text/>
+		</attribute>
+	</define>
+	<define name="edgeLabel">
+		<attribute name="label">
+			<text/>
+		</attribute>
+	</define>
+	<define name="nodeGlobalAttr">
+		<element name="nodeGlobalAttr">
+			<ref name="nodeAttr"/>
+		</element>
+	</define>
+	<define name="edgeGlobalAttr">
+		<element name="edgeGlobalAttr">
+			<ref name="edgeAttr"/>
+		</element>
+	</define>
+	<define name="optAlign">
+		<optional>
+			<attribute name="align">
+				<ref name="alignType"/>
+			</attribute>
+		</optional>
+	</define>
+	<define name="nodeAttr">
+		<optional>
+			<attribute name="color">
+				<ref name="colorType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="colorgrade">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="comment">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="distortion">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fillcolor">
+				<ref name="colorType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fillcolorgrade">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fixedsize">
+				<data type="boolean"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontcolor">
+				<ref name="colorType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontcolorgrade">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontname">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontsize">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="group">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="height">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="layer">
+				<data type="IDREF"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="orientation">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="peripheries">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="regular">
+				<data type="boolean"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="shape">
+				<ref name="shapeType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="shapefile">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="sides">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="skew">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="style">
+				<choice>
+					<value>invis</value>
+					<value>filled</value>
+					<value>diagonals</value>
+					<value>rounded</value>
+				</choice>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="URL">
+				<data type="anyURI"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="width">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="z">
+				<data type="float"/>
+			</attribute>
+		</optional>
+	</define>
+	<define name="edgeAttr">
+		<optional>
+			<attribute name="arrowhead">
+				<ref name="arrowType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="arrowsize">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="arrowtail">
+				<ref name="arrowType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="color">
+				<ref name="colorType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="colorgrade">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="comment">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="constraint">
+				<data type="boolean"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="decorate">
+				<data type="boolean"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="dir">
+				<choice>
+					<value>forward</value>
+					<value>back</value>
+					<value>both</value>
+					<value>none</value>
+				</choice>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontcolor">
+				<ref name="colorType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontcolorgrade">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontname">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontsize">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="headlabel">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="headport">
+				<ref name="portType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="headURL">
+				<data type="anyURI"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="labelangle">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="labeldistance">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="labelfloat">
+				<data type="boolean"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="labelfontcolor">
+				<ref name="colorType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="labelfontcolorgrade">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="labelfontname">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="labelfontsize">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="layer">
+				<data type="IDREF"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="lhead">
+				<data type="IDREF">
+					<param name="pattern">cluster[\w\d_\-]+</param>
+				</data>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="ltail">
+				<data type="IDREF">
+					<param name="pattern">cluster[\w\d_\-]+</param>
+				</data>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="minlen">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="samehead">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="sametail">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="style">
+				<choice>
+					<value>bold</value>
+					<value>dotted</value>
+					<value>filled</value>
+				</choice>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="taillabel">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="tailport">
+				<ref name="portType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="tailURL">
+				<data type="anyURI"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="weight">
+				<data type="integer"/>
+			</attribute>
+		</optional>
+	</define>
+	<define name="graphBodyAttr">
+		<optional>
+			<attribute name="strict">
+				<data type="boolean"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="bgcolor">
+				<ref name="colorType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="bgcolorgrade">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="center">
+				<data type="boolean"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="clusterrank">
+				<choice>
+					<value>global</value>
+					<value>locale</value>
+					<value>none</value>
+				</choice>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="color">
+				<ref name="colorType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="colorgrade">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="comment">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="compound">
+				<data type="boolean"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="concentrate">
+				<data type="boolean"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fillcolor">
+				<ref name="colorType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fillcolorgrade">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontcolor">
+				<ref name="colorType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontcolorgrade">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontname">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontpath">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="fontsize">
+				<data type="unsignedInt"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="label">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="labeljust">
+				<choice>
+					<value>left</value>
+					<value>right</value>
+					<value>centered</value>
+				</choice>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="labelloc">
+				<choice>
+					<value>top</value>
+					<value>bottom</value>
+				</choice>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="layers">
+				<data type="IDREFS"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="margin">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="mclimit">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="nodesep">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="nslimit">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="nslimit1">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="ordering">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="orientation">
+				<choice>
+					<value>landscape</value>
+					<value>portrait</value>
+				</choice>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="page">
+				<text/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="pagedir">
+				<ref name="pageDirType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="quantum">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="rank">
+				<choice>
+					<value>same</value>
+					<value>min</value>
+					<value>max</value>
+					<value>source</value>
+					<value>sink</value>
+				</choice>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="rankdir">
+				<ref name="pageDirType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="ranksep">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="ratio">
+				<choice>
+					<data type="float"/>
+					<value>fill</value>
+					<value>auto</value>
+				</choice>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="remincross">
+				<data type="boolean"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="rotate">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="samplepoints">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="searchsize">
+				<data type="float"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="size">
+				<ref name="sizeType"/>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="style">
+				<choice>
+					<value>solid</value>
+					<value>dashed</value>
+					<value>dotted</value>
+					<value>bold</value>
+					<value>invis</value>
+				</choice>
+			</attribute>
+		</optional>
+		<optional>
+			<attribute name="URL">
+				<data type="anyURI"/>
+			</attribute>
+		</optional>
+	</define>
+</grammar>
