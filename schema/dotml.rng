@@ -273,7 +273,9 @@
 	<define name="subgraph">
 		<element name="subgraph">
 			<attribute name="id">
-				<data type="ID"/>
+				<data type="ID">
+					<param name="pattern">[\w\d_]+</param>
+				</data>
 			</attribute>
 			<ref name="graphBody"/>
 		</element>
@@ -675,14 +677,14 @@
 		<optional>
 			<attribute name="lhead">
 				<data type="IDREF">
-					<param name="pattern">cluster[\w\d_\-]+</param>
+					<param name="pattern">cluster[\w\d_]+</param>
 				</data>
 			</attribute>
 		</optional>
 		<optional>
 			<attribute name="ltail">
 				<data type="IDREF">
-					<param name="pattern">cluster[\w\d_\-]+</param>
+					<param name="pattern">cluster[\w\d_]+</param>
 				</data>
 			</attribute>
 		</optional>
